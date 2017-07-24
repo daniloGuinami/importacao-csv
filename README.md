@@ -1,27 +1,55 @@
-# Laravel PHP Framework
+# Processamento de arquivo csv
+Este projeto tem como objetivo realizar a leitura de arquivos csv, validar, persistir ou atualizar as informações em um banco de dados.
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Premissas
+Funcionar em ambiente Windows.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## Instruções para configuração do ambiente
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+### Instalação do php
+Acesse o link abaixo e faça o download da versão PHP 5.6 (5.6.31)
+```html
+http://windows.php.net/download/
+```
+Após o download, extrair os arquivos em uma pasta (de preferência na raiz do disco local C) e 
+incluir o path dessa pasta nas variáveis de ambiente, para funcionamento do PHP.<br>
+Instale as seguintes extensões (alterando o arquivo php.ini):<br>
 
-## Official Documentation
+- OpenSSL
+- PDO
+- Mbstring
+- Tokenizer
+- XML
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+### Instalação do composer
+Acesse o link abaixo e faça o download da instalação
 
-## Contributing
+```html
+https://getcomposer.org/download/
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+### Instalação do laravel via composer
+Acesse o prompt de comando e digite o comando abaixo
 
-## Security Vulnerabilities
+```html
+composer global require "laravel/installer"
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+### Instalação do banco de dados mysql para windows
+Acesse o link abaixo e faça o download da instalação
+```html
+https://dev.mysql.com/downloads/file/?id=471661
+```
 
-## License
+Após a instalação crie um usuário e um banco com os seguintes dados:<br>
+Nome do banco: laravel<br>
+Nome do usuário: laravel<br>
+Senha: root<br>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+### Baixando depedências do projeto
+
+Após preparar o ambiente, acesse a pasta do projeto, no prompt de comando
+e digite o seguinte comando para baixar as depedências: 
+```composer
+php composer.phar install
+```
