@@ -14,8 +14,8 @@ class CreateEmpresasTable extends Migration
     public function up()
     {
         Schema::create('empresas', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('descricao');
+            $table->integer('id_empresa')->unsigned();
+            $table->primary(['id_empresa']);
             $table->date('data_transacao');
             $table->smallInteger('status')->default(1)->comment('1 - Ativo, 2 - Inativo');
             $table->timestamps();

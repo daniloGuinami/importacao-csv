@@ -13,15 +13,28 @@ class EmpresaService
         $this->empresaRepository = $empresaRepository;
     }
 
-    //todo alterar tabela empreas, removendo alguns campos e inserindo outros,
-    public function inserir($dados)
+    public function getIdEmpresa($id)
     {
-        if (count($dados) > 0) {
-            foreach ($dados as $item) {
+        return $this->empresaRepository->getIdEmpresa($id);
+    }
 
-            }
+    public function atualizarStatus($id)
+    {
+        if (!$this->getIdEmpresa($id)) {
+            (new LogService())
+                ->setId($id)
+                ->setDescricao('Este empresa não existe no banco de dados!')
+                ->setTipo('LogAtualizacao')
+                ->gerarLog();
+
+            return false;
+        } else {
+            return $this->empresaRepository->atualizarStatus($id);
         }
+    }
 
-        return true;
+    public function inserir($dadosEmprsea)
+    {
+        return $this->empresaRepository->create($dadosEmprsea);
     }
 }

@@ -8,6 +8,7 @@ class Funcionario extends Model
 {
     protected $fillable = [
         'empresa_id',
+        'id_funcionario',
         'nome',
         'data_transacao'
     ];

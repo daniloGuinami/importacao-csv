@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Empresa extends Model
 {
     protected $fillable = [
-        'descricao',
-        'data_transacao'
+        'id_empresa',
+        'data_transacao',
+        'status'
     ];
 
     public function funcionarios()
