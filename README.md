@@ -21,7 +21,7 @@ Instale as seguintes extensões (alterando o arquivo php.ini):<br>
 - Tokenizer
 - XML
 
-####2. Instalação do composer
+#### 2. Instalação do composer
 Acesse o link abaixo e faça o download da instalação
 
 https://getcomposer.org/download/
