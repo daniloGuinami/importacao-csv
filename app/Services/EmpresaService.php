@@ -13,6 +13,11 @@ class EmpresaService
         $this->empresaRepository = $empresaRepository;
     }
 
+    public function getAll()
+    {
+        return $this->empresaRepository->getAll();
+    }
+
     public function getIdEmpresa($id)
     {
         return $this->empresaRepository->getIdEmpresa($id);

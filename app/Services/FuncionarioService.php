@@ -41,4 +41,9 @@ class FuncionarioService
     {
         $this->funcionarioRepositoy->create($dadosFuncionario);
     }
+
+    public function getAll()
+    {
+        return $this->funcionarioRepositoy->getAll();
+    }
 }

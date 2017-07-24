@@ -14,6 +14,11 @@ class EmpresaRepository
         $this->empresa = $empresa;
     }
 
+    public function getAll()
+    {
+        return $this->empresa->all();
+    }
+
     public function getIdEmpresa($id)
     {
         return $this->empresa->where('id_empresa', $id)->value('id_empresa');

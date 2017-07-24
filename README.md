@@ -80,3 +80,15 @@ php artisan csv:import nomeArquivo.csv
 
 - Após o processamento do(s) arquivo(s), o mesmo foi movido para a pasta "storage/app/processados"
 - Os logs gerados pelo processamento, fica no arquivo "importacao.log", na pasta "storage/logs"
+
+Comando para listar os dados da(s) empresa(s)
+
+```html
+php artisan csv:list empresas
+```
+
+Comando para listar os dados do(s) funcionário(s)
+
+```html
+php artisan csv:list funcionarios
+```

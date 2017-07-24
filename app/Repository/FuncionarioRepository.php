@@ -29,4 +29,9 @@ class FuncionarioRepository
     {
         return $this->funcionario->create($data);
     }
+
+    public function getAll()
+    {
+        return $this->funcionario->all();
+    }
 }
