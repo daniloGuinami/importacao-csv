@@ -79,3 +79,4 @@ php artisan csv:import nomeArquivo.csv
 ```
 
 - Após o processamento do(s) arquivo(s), o mesmo foi movido para a pasta "storage/app/processados"
+- Os logs gerados pelo processamento, fica no arquivo "importacao.log", na pasta "storage/logs"

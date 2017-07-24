@@ -46,24 +46,24 @@ class ValicadaoService
         if (count($dadosInsercaoAtualizacao['insercao']) > 0) {
             foreach ($dadosInsercaoAtualizacao['insercao'] as $key => $item) {
                 $dadosInsercao['empresa'][$key]['id_empresa'] = $item['id_empresa'];
-                $dadosInsercao['empresa'][$key]['data_transacao'] = date('Y-m-d', strtotime($item['data_transacao']));
+                $dadosInsercao['empresa'][$key]['data_transacao'] = $this->alteraOrdemData($item['data_transacao']);
 
                 $dadosInsercao['funcionario'][$key]['id_funcionario'] = $item['id_funcionario'];
                 $dadosInsercao['funcionario'][$key]['empresa_id'] = $item['id_empresa'];
                 $dadosInsercao['funcionario'][$key]['nome'] = $item['nome_funcionario'];
-                $dadosInsercao['funcionario'][$key]['data_transacao'] = date('Y-m-d', strtotime($item['data_transacao']));
+                $dadosInsercao['funcionario'][$key]['data_transacao'] = $this->alteraOrdemData($item['data_transacao']);
             }
         }
 
         if (count($dadosInsercaoAtualizacao['atualizadaoStatus']) > 0) {
             foreach ($dadosInsercaoAtualizacao['atualizadaoStatus'] as $key => $item) {
                 $dadosAtualizacao['empresa'][$key]['id_empresa'] = $item['id_empresa'];
-                $dadosAtualizacao['empresa'][$key]['data_transacao'] = date('Y-m-d', strtotime($item['data_transacao']));
+                $dadosAtualizacao['empresa'][$key]['data_transacao'] = $this->alteraOrdemData($item['data_transacao']);
 
                 $dadosAtualizacao['funcionario'][$key]['id_funcionario'] = $item['id_funcionario'];
                 $dadosAtualizacao['funcionario'][$key]['empresa_id'] = $item['id_empresa'];
                 $dadosAtualizacao['funcionario'][$key]['nome'] = $item['nome_funcionario'];
-                $dadosAtualizacao['funcionario'][$key]['data_transacao'] = date('Y-m-d', strtotime($item['data_transacao']));
+                $dadosAtualizacao['funcionario'][$key]['data_transacao'] = $this->alteraOrdemData($item['data_transacao']);
             }
         }
 
@@ -71,5 +71,11 @@ class ValicadaoService
             'insercao' => $dadosInsercao,
             'atualizacaoStatus' => $dadosAtualizacao
         ];
+    }
+
+    private function alteraOrdemData($dadosData)
+    {
+        $dados = explode('/', $dadosData);
+        return $dados[2] . '-' . $dados[1] . '-' . $dados[0];
     }
 }
