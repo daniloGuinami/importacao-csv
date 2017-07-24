@@ -33,6 +33,11 @@ class EmpresaService
         }
     }
 
+    public function atualizarDataTransacao($dadosEmpresa)
+    {
+        return $this->empresaRepository->atualizarDataTransacao($dadosEmpresa);
+    }
+
     public function inserir($dadosEmprsea)
     {
         return $this->empresaRepository->create($dadosEmprsea);

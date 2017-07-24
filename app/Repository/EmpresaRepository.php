@@ -26,6 +26,13 @@ class EmpresaRepository
         ]);
     }
 
+    public function atualizarDataTransacao($dadosEmpresa)
+    {
+        return $this->empresa->where('id_empresa', $dadosEmpresa['id_empresa'])->update([
+            'data_transacao' => $dadosEmpresa['data_transacao']
+        ]);
+    }
+
     public function create(array $data)
     {
         return $this->empresa->create($data)->id_empresa;

@@ -224,11 +224,10 @@ class ImportacaoServices
      * Este método tem por finalidade:
      * - verificar se a empresa que está no elemento do array existe
      *   no banco de dados. Se não existir, faz o insert no banco.
-     *   Se existir, gera um log
+     *   Se existir, atualiza a data de transação no banco e gera um log
      *
      * - verificar se o funcionário que está no elemtno do array
      *   existe no banco de dados. Se não existir, faz o insert no banco.
-     *   Se existir, gera um log.
      *
      * @param $dadosPersistencia
      * @return bool|string
@@ -242,9 +241,11 @@ class ImportacaoServices
                 if (!$idEmpresa) {
                     $idEmpresa = $this->empresaService->inserir($dadosEmpresa);
                 } else {
+                    $this->empresaService->atualizarDataTransacao($dadosEmpresa);
+
                     (new LogService())
                         ->setId($idEmpresa)
-                        ->setDescricao('Esta empresa já existe no banco de dados!')
+                        ->setDescricao('Esta empresa já existe no banco de dados. Foi atualizado apenas a data da transação!')
                         ->setTipo('LogInserção')
                         ->gerarLog();
                 }
@@ -255,12 +256,6 @@ class ImportacaoServices
 
                         if (!$idFuncionario) {
                             $this->funcionarioService->inserir($dadosFuncionario);
-                        } else {
-                            (new LogService())
-                                ->setId($idFuncionario)
-                                ->setDescricao('Esta funcionário já existe no banco de dados!')
-                                ->setTipo('LogInserção')
-                                ->gerarLog();
                         }
                     }
                 }
@@ -274,9 +269,9 @@ class ImportacaoServices
 
     /**
      * Este método tem por finalidade:
-     * - verificar se a empresa em que o funcionário é vinculado existe.
-     *   Se a empresa existir, atualiza o status do funcionário. Se não
-     *   existir, o sistema gera um log.
+     * - verificar se o funcionário e a empresa em que ele é vinculado existem.
+     *   Se sim, atualiza o status do funcionário. Se não existir,
+     *   o sistema gera um log.
      *
      * @param $dadosPersistencia
      * @return bool|string
@@ -286,13 +281,14 @@ class ImportacaoServices
         try {
             foreach ($dadosPersistencia['funcionario'] as $dadosFuncionario) {
                 $idEmpresa = $this->empresaService->getIdEmpresa($dadosFuncionario['empresa_id']);
+                $idFuncionario = $this->funcionarioService->getIdFuncionario($dadosFuncionario['id_funcionario']);
 
-                if ($idEmpresa) {
+                if ($idEmpresa && $idFuncionario) {
                     $this->funcionarioService->atualizarStatus($dadosFuncionario);
                 } else {
                     (new LogService())
                         ->setId($dadosFuncionario['empresa_id'])
-                        ->setDescricao('Esta empresa não existe no banco de dados!')
+                        ->setDescricao('Esta empresa ou funcionário não existe no banco de dados!')
                         ->setTipo('LogAtualização')
                         ->gerarLog();
                 }
