@@ -6,7 +6,7 @@ Funcionar em ambiente Windows.
 
 ## Instruções para configuração do ambiente
 
-####1. Instalação do php
+###1. Instalação do php
 Acesse o link abaixo e faça o download da versão PHP 5.6 (5.6.31)
 
 http://windows.php.net/download/
